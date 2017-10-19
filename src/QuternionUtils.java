@@ -53,7 +53,7 @@ public class QuternionUtils {
     
     public static double[] quaternionMultiplication(double[] p, double[] q){
       if (q.length != 4) throw new IllegalArgumentException("q.length must be 4 but it is "+q.length);
-      if (p.length != 3) throw new IllegalArgumentException("p.length must be 3 but it is "+p.length);
+      if (p.length != 4) throw new IllegalArgumentException("p.length must be 3 but it is "+p.length);
       
       // r = p q
       return new double[]{p[0]*q[0] - p[1]*q[1] - p[2]*q[2] - p[3]*q[3],
