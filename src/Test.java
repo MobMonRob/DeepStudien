@@ -12,7 +12,7 @@ public class Test{
     public static void main(String[] args) throws FileNotFoundException, IOException{
         ComplementaryFilter filter = new ComplementaryFilter();
 
-        JsonValue json = Json.parse(new FileReader(new File("../Sensordaten/ruhig.json")));
+        JsonValue json = Json.parse(new FileReader(new File("../Sensordaten/unfreier_fall.json")));
         
         if (json.isArray()) {
         	  JsonArray array = json.asArray();
