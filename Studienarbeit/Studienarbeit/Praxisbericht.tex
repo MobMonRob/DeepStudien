@@ -1,0 +1,258 @@
+% ---- Präambel mit Angaben zum Dokument
+\documentclass[
+fontsize=11pt,
+paper=A4,
+twoside=false,
+listof=totoc,            % Tabellen- und Abbildungsverzeichnis ins Inhaltsverzeichnis
+bibliography=totoc,      % Literaturverzeichnis ins Inhaltsverzeichnis aufnehmen
+titlepage,               % Titlepage-Umgebung anstatt \maketitle
+headsepline,             % horizontale Linie unter Kolumnentitel
+abstracton,              % Überschrift einschalten, Abstract muss in {abstract}-Umgebung stehen
+]{scrreprt}                  % Verwendung von KOMA-Report
+\usepackage[utf8]{inputenc}  % UTF8 Encoding einschalten
+\usepackage[ngerman]{babel}  % Neue deutsche Rechtschreibung
+\usepackage[T1]{fontenc}     % Ausgabe von westeuropäischen Zeichen (auch Umlaute)
+\usepackage{graphicx}        % Einbinden von Grafiken erlauben
+\usepackage{tikz}
+\usetikzlibrary{er,positioning}
+\usepackage{verbatim} 
+\usepackage{xcolor}
+\usepackage{setspace}        % Zeilenabstand \singlespacing, \onehalfspaceing, \doublespacing
+\usepackage{listings}
+\usepackage[
+%showframe,              % Ränder anzeigen lassen
+left=2.5cm, right=2.5cm,
+top=2.5cm,  bottom=2.5cm,
+includeheadfoot
+]{geometry}                      % Seitenlayout einstellen
+\usepackage{mathpazo}            % Einstellung der verwendeten Schriftarten
+\usepackage{scrpage2}            % Gestaltung von Fuß- und Kopfzeilen
+\usepackage[hidelinks]{hyperref} % Klickbare Links im Dokument
+\urlstyle{same}                  % Aktuelle Schrift auch für URLs
+\usepackage{acronym}             % Abkürzungen, Abkürzungsverzeichnis
+\usepackage{titletoc}            % Anpassungen am Inhaltsverzeichnis
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\contentsmargin{0.7cm}           % Abstand im Inhaltsverzeichnis zw. Punkt und Seitenzahl
+
+
+\include{htmldef}
+
+% start of JSON 
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+	basicstyle=\normalfont\ttfamily,
+	numbers=left,
+	numberstyle=\scriptsize,
+	numbersep=8pt,
+	showstringspaces=false,
+	breaklines=true,
+	frame=lines,
+	literate=
+	*{0}{{{\color{numb}0}}}{1}
+	{1}{{{\color{numb}1}}}{1}
+	{2}{{{\color{numb}2}}}{1}
+	{3}{{{\color{numb}3}}}{1}
+	{4}{{{\color{numb}4}}}{1}
+	{5}{{{\color{numb}5}}}{1}
+	{6}{{{\color{numb}6}}}{1}
+	{7}{{{\color{numb}7}}}{1}
+	{8}{{{\color{numb}8}}}{1}
+	{9}{{{\color{numb}9}}}{1}
+	{:}{{{\color{punct}{:}}}}{1}
+	{,}{{{\color{punct}{,}}}}{1}
+	{\{}{{{\color{delim}{\{}}}}{1}
+	{\}}{{{\color{delim}{\}}}}}{1}
+	{[}{{{\color{delim}{[}}}}{1}
+	{]}{{{\color{delim}{]}}}}{1},
+}
+
+% end of JSON
+
+% ---- Für Anführungszeichen und Zitate
+\usepackage[babel,german=quotes]{csquotes} % Deutsche Anführungszeichen + Zitate
+
+% ---- Für Mathevorlage
+\usepackage{amsmath}    % Erweiterung vom Mathe-Satz
+\usepackage{amssymb}    % Lädt amsfonts und weitere Symbole
+\usepackage{MnSymbol}   % Für Symbole, die in amssymb nicht enthalten sind.
+
+% ---- Für Quellcodevorlage
+\usepackage{scrhack}    % Hack to use listings in KOMA-Script
+\usepackage{listings}   % Datstellung von Quellcode
+\usepackage{xcolor}     % einfache Verwendung von Farben
+
+\usepackage{cite}
+
+
+% ------ Eigene Farben für den Quellcode
+\definecolor{EigenesLila}{rgb}{0.4,0.1,0.4}
+\definecolor{EigenesCyan}{rgb}{0.0,0.5,0.4}
+\definecolor{EigenesGruen}{rgb}{0.3,0.5,0.4}
+\definecolor{EigenesBlau}{rgb}{0.0,0.0,1.0}
+
+% ------ Default Listing-Styles
+
+% Breche lange Zeilen um + Symbol für Zeilenumbruch einfügen
+\lstset{ 
+	breaklines=true,
+	breakatwhitespace=true,
+	prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\rhookswarrow}},
+	postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\rcurvearrowse\space}}
+}
+\lstset{
+	tabsize=4 % Setze die Breite eines Tabs
+}
+
+% ------ Eigener JAVA-Style für den Quellcode
+\renewcommand{\ttdefault}{pcr}                 % Schriftart, welche auch fett beinhaltet
+\lstdefinestyle{EigenerJavaStyle}{
+	language=Java,                             % Syntax Highlighting für Java
+	columns=flexible,                          % Besseres Schriftbild
+	numbers=left,                              % Nummerierung der Zeilen
+	%frame=single,                             % Umrandung des Codes
+	showstringspaces=false,                    % Keine Leerzeichen hervorheben
+	basicstyle=\ttfamily,                      % Grundsätzlicher Schriftstyle
+	keywordstyle=\bfseries\color{EigenesLila}, % Keywords in eigener Farbe
+	commentstyle=\itshape\color{EigenesGruen}, % Kommentare in eigener Farbe
+	stringstyle=\color{EigenesBlau},           % Strings in eigener Farbe
+	xleftmargin=5.0ex
+}
+
+
+% ---- Nicht benötigte Packages
+\usepackage{lipsum}      % Dummy Text Lorem ipsum
+%\usepackage{ucs}        % Erweiterte UTF8 Encoding Unterstützung
+%\usepackage{textcomp}   % Einsatz von Eurozeichen u. a. Symbolen
+%\usepackage{adjustbox}  % Allign Pictures(left, right, center)
+%\usepackage{pifont}     % http://ctan.org/pkg/pifont
+%\usepackage{url}        % Zum Verlinken (\url{...} und \href{...}{...})
+%\usepackage{nameref}    % Zum Referenzieren von Überschriften als Text
+
+% ---- Hilfreiches
+\newcommand{\zB}{z.\,B. }
+\newcommand{\dash}{d.\,h. }
+
+% ---- Elektronische Version oder Gedruckte Version?
+\usepackage{ifthen}
+\newboolean{e-Abgabe}
+\setboolean{e-Abgabe}{false}    % false=gedruckte Fassung
+
+% ---- Abstand verkleinern von der Überschrift 
+\renewcommand*{\chapterheadstartvskip}{\vspace*{.5\baselineskip}}
+
+% ---- Persönlichen Daten:
+\newcommand{\titel}{Ansätze zur Erkennung von Anomalien in Sensordaten aus mobilen Plattformen auf Basis von Deep Learning-Algorithmen}
+\newcommand{\titelheader}{Erkennung von Sensoranomalien mit Deep Learning}
+\newcommand{\arbeit}{Studienarbeit}
+\newcommand{\studiengang}{Angewandte Informatik}
+\newcommand{\autor}{Benedikt Bosshammer}
+\newcommand{\autorWith}{Enrico Kaack}
+\newcommand{\autorReverse}{Bosshammer, Benedikt}
+\newcommand{\verfassungsort}{Karlsruhe}
+\newcommand{\matrikelnr}{2416344}
+\newcommand{\kurs}{TINF15B2}
+\newcommand{\bearbeitungsmonat}{September 2017}
+\newcommand{\abgabe}{15. Mai 2018}
+\newcommand{\bearbeitungszeitraum} {01.10.2017 - 23.12.2017}
+\newcommand{\bearbeitungszeitraumNd} {15.02.2018 - 15.05.2018}
+%\newcommand{\firmaname}{SAP Deutschland}
+%\newcommand{\firmastrasse}{Tesdorpfstraße 6}
+%\newcommand{\firmaplz}{69190 Hamburg, Deutschland}
+%\newcommand{\abteilung}{SAP Consulting - Analytics\&Insights}
+\newcommand{\betreuer}{Prof. Dr. Marcus Strand}
+
+% ---- Metainformation für das PDF Dokument
+\hypersetup{
+	pdftitle    = {\titel},
+	pdfsubject  = {\arbeit},
+	pdfauthor   = {\autor},
+	%pdfkeywords = {Keywords angeben},
+	pdfcreator  = {LaTeX},
+	%pdfproducer = {in der Regel pdfTeX}
+}
+
+% ---- Definition der Kopf- und Fußzeilen
+\clearscrheadfoot                               % Löschen von LaTeX Standard
+\automark[section]{chapter}                     % Füllen von section und chapter
+\renewcommand*{\chaptermarkformat}{}            % Entfernt die Kapitelnummer
+\renewcommand*{\sectionmarkformat}{}            % Entfernt die Sectionnummer
+% Angaben [für "plain"]{für "scrheadings"}
+\ihead[]{\titelheader}                          % Kopfzeile links
+\chead[]{}                                      % Kopfzeile mitte
+\ohead[]{\rightmark}                            % Kopfzeile rechts
+\ifoot[]{}                                      % Fußzeile links
+\cfoot[\sffamily\pagemark]{\sffamily\pagemark}  % Fußzeile mitte
+\ofoot[]{}                                      % Fußzeile rechts
+\setheadsepline{0.2pt}                          % Liniendicke Kopfzeile
+\setfootsepline{0.0pt}                          % Liniendicke Fußzeile
+
+% ---- Beginn des Dokuments
+\begin{document}
+	\setlength{\parindent}{0pt}
+	\setcounter{secnumdepth}{3}    % Nummerierungstiefe fürs Inhaltsverzeichnis
+	\setcounter{tocdepth}{3}       % Tiefe des Inhaltsverzeichnisses
+	\sffamily                      % Serifenlose Schrift verwenden.
+	% Für serife Schrift auskommentieren.
+	
+	% ---- Titelseite
+	\singlespacing
+	\include{Inhalt/Standard/titelseite} % Titelseite
+	\newcounter{savepage}
+	\pagenumbering{Roman}                % Römische Seitenzahlen
+	\onehalfspacing
+	
+	% ---- Erklärung, Sperrvermerk, Abstact
+	\include{Inhalt/Standard/erklaerung}
+	%\include{Inhalt/Standard/sperrvermerk}
+	\setcounter{savepage}{\value{page}}
+	
+	% ---- Inhaltsverzeichnis
+	\renewcommand*{\chapterpagestyle}{empty}
+	\pagestyle{empty}
+	\singlespacing
+	\tableofcontents
+	
+	% ---- Inhalt der Studienarbeit
+	\cleardoublepage
+	\pagenumbering{arabic}   % Arabische Seitenzahlen für den Hauptteil
+	\rmfamily
+	\renewcommand*{\chapterpagestyle}{scrheadings}
+	\pagestyle{scrheadings}
+	\onehalfspacing
+	
+	
+	\include{Inhalt/Kapitel/Einleitung}
+	
+	
+	\cleardoublepage
+	\renewcommand*{\chapterpagestyle}{plain}
+	\pagestyle{plain}
+	\pagenumbering{Roman}                   % Römische Seitenzahlen
+	\setcounter{page}{\value{savepage}}
+	
+	% ---- Verzeichnisse
+	\listoffigures                          % Erzeugen des Abbildungsverzeichnisses 
+	%\listoftables                           % Erzeugen des Tabellenverzeichnisses
+	\renewcommand{\lstlistlistingname}{Listenverzeichnis}
+	\lstlistoflistings                      % Erzeugen des Listenverzeichnisses
+	\include{Inhalt/abkuerzungen}
+	
+	% ---- Literaturverzeichnis
+	 \nocite{*}
+	 \bibliographystyle{ieeetr}
+	 \bibliography{Inhalt/literatur}         % Bib-Datei ohne .bib Endung
+	
+	
+	% ---- Anhang
+	\appendix
+	%\clearpage
+	%\pagenumbering{Roman}  % römische Seitenzahlen für Anhang
+	
+	\newpage
+\end{document}

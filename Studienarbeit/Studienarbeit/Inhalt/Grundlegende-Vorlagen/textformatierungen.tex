@@ -1,0 +1,135 @@
+\chapter{Textformatierungen}
+
+\section{Listen}
+\begin{itemize}
+	\item Erster geworden
+	\item Wir haben keine Nummern
+	\begin{itemize}
+		\item Wir sind nicht oben oder?
+		\item Nein leider nicht.
+		\item[+] Nummerierungen oder
+		\item[-] Aufzählungen oder
+		\item[*] Definitionen 
+	\end{itemize}
+\end{itemize}
+
+\begin{enumerate}
+	\item Jetzt ist es offiziell ich bin die Nummer 1
+	\item Der 2 Platz ist auch nicht schlecht
+	\item[42.] Es ist die Antwort auf alles
+\end{enumerate}
+
+\begin{description}
+	\item[Epidemie / Pandemie] \hfill \\
+	Als Epidemie bezeichnet man eine in einem bestimmten begrenzten Verbreitungsgebiet auftretende ansteckende Erkrankung; eine Seuche, für die typisch ist, dass eine große Zahl von Menschen gleichzeitig befallen wird. 
+	\item[Fastenzeit] \hfill \\
+	Das Verb fasten geht auf das mittelhochdeutsche vasten zurück und hat mit dem Adjektiv fest zu tun, das wiederum aus mittelhochdeutsch veste und althochdeutsch festi, fasti hervorgegangen ist. Es bedeutet so viel wie fest. Dazu gehört das entsprechende althochdeutsche Adverb fasto, worauf in der Tat das Adverb fast zu beziehen ist.
+	\item[Reduplikation] \hfill \\
+	Wörter wie Töfftöff oder tipptopp gehören zu einer überschaubaren Gruppe von Bildungen, die im Deutschen etwa hundert Mitglieder umfasst. In der Sprachwissenschaft wird das Mittel der Wort- und Formbildung, das ihnen eigen ist, als Reduplikation, abgeleitet vom lateinischen Wort für Verdoppelung, bezeichnet: Silben oder Wörter werden bei diesen Bildungen wörtlich oder leicht abgeändert wiederholt.
+\end{description}
+
+\section{Schriftbild}
+
+% Größe
+\LARGE In volutpat interdum ullamcorper.\small Suspendisse quis tellus malesuada, venenatis ex placerat, mollis ex.
+\normalsize
+
+% Fett, KAPITÄLCHEN, Kursiv
+\textbf{Duis feugiat magna sed diam finibus,} \textsc{ut pharetra turpis facilisis.} \textit{Vestibulum mattis dui et ipsum tincidunt iaculis.}
+
+% Schreibmaschinenschrift, serifenlose Schrift, Serifenschrift
+\texttt{Vivamus finibus massa vel} \textsf{leo vestibulum cursus.} \textrm{Etiam sed orci quis leo pulvinar imperdiet.}
+
+Manche Zeichen wollen einfach nicht so, wie der Autor das will: \% \& \$ \{ \}
+
+\section{Abkürzungen}
+
+Während man schreibt benötigt man zu manchen Zeitpunkten einfach wieder ein paar Abkürzungen. Doch wie mache ich das wenn ich eine Abkürzung für die \acp{API} nutzen möchte. Ich könnte auch nur ein \ac{API} gemeint haben. Daneben gibt es noch \ac{SaaS} oder \ac{PaaS}.
+
+Im Text können gewisse Dinge auch nützlich sein wie \zB diese Abkürzung, \dash man kann sie so direkt in den Text eintragen.
+
+\section{Fußnoten und Verweise}
+
+Hamburger, Döner, Currywurst\footnote{Hier fehlt eindeutig das Lieblingsessen der Informatiker, die Pizza!} - jeder kennt sie, jeder liebt sie und jeder isst sie. Weil die Zeit drängt, der Hunger groß ist und der nächste Schnellimbiss nur drei Schritte voraus. Und nach dem Essen? Sind wir zwar satt, aber meist nicht wirklich glücklich, weil Fastfood meist eben auch nicht wirklich gut ist.\cite{Forslin.2013}
+
+\section{Anführungszeichen}
+
+Normale Anführungszeichen (\"{}) können in \LaTeX{} nicht verwendet werden. Dafür muss das entsprechende Wort in \texttt{\textbackslash enquote{\{\ldots\}}} gesetzt werden. Beispiel:
+
+\enquote{Ich stehe ich Anführungszeichen. \enquote{Schachtelungen funktionieren auch.}}
+
+Alternativ können Anführungszeichen auch von Hand gesetzt werden:
+
+\texttt{\textbackslash glqq\{\}} entspricht \glqq{} und \newline
+\texttt{\textbackslash grqq\{\}} entspricht \grqq{}
+
+\section{Tabellen}
+
+\begin{table}[ht]
+	\centering
+	\caption{Eine dreispaltige Tabelle}
+	\begin{tabular}{lll}
+		\hline
+		\textbf{linke Spalte} & \textbf{mittlere Spalte} & \textbf{rechte Spalte} \\
+		\hline
+		A & B & C \\
+		! & 2 & 3 \\
+		a & b & c \\
+		i & ii & iii \\
+		\hline
+	\end{tabular}
+	\label{tabelle:Nummer1}
+\end{table}
+
+\begin{table}[ht]
+	\centering
+	\caption{Vergleich von Löwe und Mensch}
+	\begin{tabular}{|r|c|l|}
+		\hline
+		\textbf{}                          & \textbf{Löwe}  & \textbf{Mensch}\\ \hline
+		\textbf{Gewicht des Gehirns}       & 1              & 2\\
+		\textbf{Körpertemperatur}          & 3              & 4\\
+		\textbf{Atemfrequenz}              & 5              & 6\\
+		\textbf{Maximale Geschwindigkeit}  & 7              & 8\\
+		\textbf{Grundstoffwechselumsatz}   & 9              & 10\\\hline
+	\end{tabular}
+	\label{tabelle:Nummer2}
+\end{table}
+
+\begin{table}[ht]
+	\centering
+	\caption{Abkürzungen und Namen}
+	\begin{tabular}{ |l|l| }
+		\hline
+		\multicolumn{2}{|c|}{Team sheet} \\
+		\hline
+		GK & Paul Robinson \\
+		LB & Lucas Radebe \\
+		DC & Michael Duberry \\
+		DC & Dominic Matteo \\
+		RB & Dider Domi \\
+		MC & David Batty \\
+		MC & Eirik Bakke \\
+		MC & Jody Morris \\
+		FW & Jamie McMaster \\
+		ST & Alan Smith \\
+		ST & Mark Viduka \\
+		\hline
+	\end{tabular}
+	\label{tabelle:Nummer4}
+\end{table}
+
+\begin{table}[ht]
+	\centering
+	\caption{Begriffe und Texte dazu}
+	\begin{tabular}{l p{8cm}}
+		Textile Techniken	& Weben und Knüpfen und andere Techniken können an einem Hoch"~ und Flachwebstuhl durchgeführt werden.
+		\tabularnewline[10pt]
+		\cline{2-2}
+		\tabularnewline[5pt]
+		Fotografie			& Fotografieren in Farbe und Schwarzweiß. Laborarbeit für Anfänger und Fortgeschrittene. Dia"~~ und Filmvorträge.
+	\end{tabular}
+	\label{tabelle:Nummer3}
+\end{table}
+
+
