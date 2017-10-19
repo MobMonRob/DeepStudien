@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MPU9250Data</string>
+    <string-array name="array_gfs">
+        <item>GFS_250DPS</item>
+        <item>GFS_500DPS</item>
+        <item>GFS_1000DPS</item>
+        <item>GFS_2000DPS</item>
+    </string-array>
+    <string-array name="array_afs">
+        <item>AFS_2G</item>
+        <item>AFS_4G</item>
+        <item>AFS_8G</item>
+        <item>AFS_16G</item>
+    </string-array>
+</resources>
