@@ -25,7 +25,7 @@ public class TrapezIntegrationFilter {
      * Update acceleration, velocity and position in navigation frame.
      * 
      * @param o_new orientation
-     * @param a_sensor
+     * @param a_sensor acceleration in sensor frame
      * @param dt 
      * @throws IllegalArgumentException,  if Initial velocity or position is not set before first invocation.
      */
