@@ -51,6 +51,16 @@ public class QuternionUtils {
       return dq;
     }
     
+    public static double[] mean(double[] q1, double[] q2){
+        if (q1.length != 4) throw new IllegalArgumentException("q1.length must be 4 but it is "+q1.length);
+        if (q2.length != 4) throw new IllegalArgumentException("q2.length must be 4 but it is "+q2.length);
+        double[] q = new double[4];
+        for (int i=0;i<4;i++){
+            q[i] = 0.5d * (q1[i]+q2[i]);
+        }
+        return q;
+    }
+    
     public static double[] quaternionMultiplication(double[] p, double[] q){
       if (q.length != 4) throw new IllegalArgumentException("q.length must be 4 but it is "+q.length);
       if (p.length != 4) throw new IllegalArgumentException("p.length must be 3 but it is "+p.length);
