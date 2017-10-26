@@ -9,7 +9,7 @@ import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonValue;
 
 public class Test{
-    public static void main(String[] args) throws FileNotFoundException, IOException{
+    public static void main(String[] args) throws Exception{
         ComplementaryFilter filter = new ComplementaryFilter();
 
         JsonValue json = Json.parse(new FileReader(new File("../Sensordaten/unfreier_fall.json")));
@@ -33,6 +33,10 @@ public class Test{
 		        
 		        double[] results = filter.getOrientation();
 		        for (double d : results) {
+					System.out.println(d);
+				}
+		        double[] resultsEuclid = QuternionUtils.toEuclidAnglesRadian(results);
+		        for (double d : resultsEuclid) {
 					System.out.println(d);
 				}
 		        System.out.println("---");

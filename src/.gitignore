@@ -48,3 +48,8 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+/ComplementaryFilter.class
+/QuternionUtils.class
+/Test.class
+/TrapezIntegrationFilter.class
+/VectorUtils.class

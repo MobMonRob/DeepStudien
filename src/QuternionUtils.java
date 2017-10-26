@@ -79,4 +79,51 @@ public class QuternionUtils {
         if (q.length != 4) throw new IllegalArgumentException("q.length must be 4 but it is "+q.length);
         return new double[]{q[1], q[2], q[3], q[0]};
     }
+    
+    /**
+     *  Converts a quaternion to euclid angle in radian unit
+     *  q1 can be non-normalised quaternion 
+     *  algorithm based on: http://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToEuler/index.htm
+     *  @return euclid angle in radian unit
+     *  @throws Exception in case of singularity*/
+
+    public static double[] toEuclidAnglesRadian(double[] q) throws Exception {
+    	 if (q.length != 4) throw new IllegalArgumentException("q.length must be 4 but it is "+q.length);
+    	 double heading, attitude, bank = 0;
+    	
+        double sqw = q[0]*q[0];
+        double sqx = q[1]*q[1];
+        double sqy = q[2]*q[2];
+        double sqz = q[3]*q[3];
+    	double unit = sqx + sqy + sqz + sqw; // if normalised is one, otherwise is correction factor
+    	double test = q[1]*q[2] + q[3]*q[0];
+    	if (test > 0.499*unit) { // singularity at north pole
+    		heading = 2 * Math.atan2(q[1],q[0]);
+    		attitude = Math.PI/2;
+    		bank = 0;
+    		throw new Exception("Singularity at north pole");
+    	}
+    	if (test < -0.499*unit) { // singularity at south pole
+    		heading = -2 * Math.atan2(q[1],q[0]);
+    		attitude = -Math.PI/2;
+    		bank = 0;
+    		throw new Exception("Singularity at south pole");
+    	}
+        heading = Math.atan2(2*q[2]*q[0]-2*q[1]*q[3] , sqx - sqy - sqz + sqw);
+    	attitude = Math.asin(2*test/unit);
+    	bank = Math.atan2(2*q[1]*q[0]-2*q[2]*q[3] , -sqx + sqy - sqz + sqw);
+    	double[] euclidAngel = {bank, heading, attitude};
+    	return euclidAngel;
+    }
+    
+    /**
+     *  Converts a quaternion to euclid angle in degree unit
+     *  q1 can be non-normalised quaternion 
+     *  @return euclid angle in degree unit
+     *  @throws Exception in case of singularity*/
+    public static double[] toEuclidAnglesDegree(double[] q) throws Exception {
+    	double[] e = QuternionUtils.toEuclidAnglesRadian(q);
+    	double[] degree = {Math.toDegrees(e[0]), Math.toDegrees(e[1]), Math.toDegrees(e[2])};
+    	return degree;
+    }
 }
