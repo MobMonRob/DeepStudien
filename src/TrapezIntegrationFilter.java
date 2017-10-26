@@ -47,11 +47,11 @@ public class TrapezIntegrationFilter {
         // Velocity and position estimation using trapeze integration.
         
         if (a_prev == null){
-            v = VectorUtils.createAdd(v_prev,VectorUtils.createScale(VectorUtils.createSub(a,new double[]{0,0,ComplementaryOrientationFilter.kGravity}), dt));
+            v = VectorUtils.createAdd(v_prev,VectorUtils.createScale(VectorUtils.createSub(a,new double[]{0,0,ComplementaryFilter.kGravity}), dt));
         } else {
             //vel_n(:,t) = vel_n(:,t-1) + ((acc_n(:,t) - [0; 0; g] )+(acc_n(:,t-1) - [0; 0; g]))*dt/2;
-            v = VectorUtils.createAdd(v_prev, VectorUtils.createScale(VectorUtils.add(VectorUtils.createSub(a,new double[]{0,0,ComplementaryOrientationFilter.kGravity}),
-                            VectorUtils.createSub(a_prev,new double[]{0,0,ComplementaryOrientationFilter.kGravity})),dt/2d));
+            v = VectorUtils.createAdd(v_prev, VectorUtils.createScale(VectorUtils.add(VectorUtils.createSub(a,new double[]{0,0,ComplementaryFilter.kGravity}),
+                            VectorUtils.createSub(a_prev,new double[]{0,0,ComplementaryFilter.kGravity})),dt/2d));
             
         }
         a_prev = a; 
