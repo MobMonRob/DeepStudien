@@ -8,9 +8,8 @@ public class DataObject {
 	double gy_z = 0;
 	
 	Quternion orientQuater = new Quternion();
-	Euclid orientEuclid = new Euclid();
+	RotationMatrix orientMat = new RotationMatrix();
 
-	Quternion posQuater = new Quternion();
 	Euclid posEuclid = new Euclid();
 
 }

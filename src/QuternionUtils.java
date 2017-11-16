@@ -136,4 +136,18 @@ public class QuternionUtils {
     	double[] degree = {Math.toDegrees(e[0]), Math.toDegrees(e[1]), Math.toDegrees(e[2])};
     	return degree;
     }
+    
+    public static double[] toRotationMatrix(double[] q) {
+    	double w = q[0], x = q[1], y = q[2], z = q[3];
+    	double[] r = {
+    			1-2*y*y-2*z*z,2*x*y-2*z*w, 2*x*z+2*y*w,
+    			2*x*y+2*z*w, 1-2*x*x-2*z*z, 2*y*z-2*x*w,
+    			2*x*z-2*y*w, 2*y*z+2*x*w, 1-2*x*x-2*y*y
+		
+    	};
+    	
+    	
+		return r;
+    	
+    }
 }

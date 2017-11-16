@@ -50,7 +50,7 @@ public class Test{
 		        //Orientation
 		        filter.update(a, w, 0.020d);
 		        double[] orient = filter.getOrientation();
-		        double[] orientEuclid = QuternionUtils.toEuclidAnglesRadian(orient);
+		        double[] orientMat = QuternionUtils.toRotationMatrix(orient);
 		        
 		        //Position
 		        posFilter.update(orient, a, 0.020d);
@@ -67,7 +67,7 @@ public class Test{
 		        data.gy_z = gy_z;
 		        
 		        data.orientQuater.setData(orient);
-		        data.orientEuclid.setData(orientEuclid);
+		        data.orientMat.setData(orientMat);
 		        //data.posQuater.setData(pos);
 		        data.posEuclid.setData(pos);
 		        list.add(data);
