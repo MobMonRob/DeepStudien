@@ -56,3 +56,4 @@ local.properties
 /DataObject.class
 /Quternion.class
 /Euclid.class
+/RotationMatrix.class
