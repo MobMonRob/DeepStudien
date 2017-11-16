@@ -39,7 +39,7 @@ public class TrapezIntegrationFilter {
         if (o != null){
             o = QuternionUtils.mean(o, o_new);
         } else {
-            o = new double[]{o_new[0], o_new[1], o_new[2]};
+            o = new double[]{o_new[0], o_new[1], o_new[2], o_new[3]};
         }
         
         a = QuternionUtils.rotateVectorByQuaternion(a_sensor, o);
