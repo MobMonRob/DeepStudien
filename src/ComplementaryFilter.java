@@ -201,10 +201,10 @@ public class ComplementaryFilter {
       if (do_bias_estimation_)
         updateBiases(a, w);
 
-      // Prediction.
+      // Prediction. =?Time update
       double[] q_pred = getPrediction(w, dt);   
-
-      // Correction (from acc): 
+      	
+      // Correction (from acc): =? measurement update
       // q_ = q_pred * [(1-gain) * qI + gain * dq_acc]
       // where qI = identity quaternion
       double[] dq_acc = getAccCorrection(a, q_pred);
@@ -306,8 +306,9 @@ public class ComplementaryFilter {
     private double[] getPrediction(final double[] w, double dt){
         
       double[] w_unb = new double[]{w[0] - w_bias_[0], w[1] - w_bias_[1], w[2] - w_bias_[2]};
-      double[] q_pred = new double[]{q_[0] + 0.5*dt*( w_unb[0]*q_[1] + w_unb[1]*q_[2] + w_unb[2]*q_[3]),
-               q_[0] + 0.5*dt*(-w_unb[0]*q_[0] - w_unb[1]*q_[3] + w_unb[2]*q_[2]),
+      double[] q_pred = new double[]
+    		  {q_[0] + 0.5*dt*( w_unb[0]*q_[1] + w_unb[1]*q_[2] + w_unb[2]*q_[3]),
+               q_[1] + 0.5*dt*(-w_unb[0]*q_[0] - w_unb[1]*q_[3] + w_unb[2]*q_[2]),
                q_[2] + 0.5*dt*( w_unb[0]*q_[3] - w_unb[1]*q_[0] - w_unb[2]*q_[1]),
                q_[3] + 0.5*dt*(-w_unb[0]*q_[2] + w_unb[1]*q_[1] - w_unb[2]*q_[0])};
 
