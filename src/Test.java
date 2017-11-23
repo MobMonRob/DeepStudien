@@ -18,6 +18,10 @@ public class Test{
 	public static String NAME = "ruhig.json";
 	
     public static void main(String[] args) throws Exception{
+    	if (args.length == 1){
+    		NAME = args[0];
+    	}
+    	
         ComplementaryFilter filter = new ComplementaryFilter();
         TrapezIntegrationFilter posFilter = new TrapezIntegrationFilter();
         List<DataObject> list = new LinkedList<>();
@@ -69,8 +73,8 @@ public class Test{
 		        data.posEuclid.setData(pos);
 		        list.add(data);
 			}
-        	  
-        	  Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	        	  
+	        	  Gson gson = new GsonBuilder().setPrettyPrinting().create();
         	  String outJson = gson.toJson(list);
         	  
         	  try (PrintWriter out = new PrintWriter("../Sensordaten/konvertiert/" + NAME)){
