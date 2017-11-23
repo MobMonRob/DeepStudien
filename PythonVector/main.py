@@ -1,68 +1,67 @@
 import matplotlib.pyplot as plt
+from matplotlib import interactive
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 
 import json
 
-path = 'ruhig'
+PATH = 'ruhig'
 
-data = json.load(open('../Sensordaten/konvertiert/' + path + '.json'))
+# load sensordata
+data = json.load(open('../Sensordaten/konvertiert/' + PATH + '.json'))
 
 soa = []
 
+# Highest shown value of axis x,y,z
 scale = 5
 
-points_x = []
-points_y = []
-points_z = []
-
+# Number of orientation matrixs
 length = len(data)
 
 aColors = []
 
+# Constant tuples for colors
 RED = (1,0,0,1)
 BLUE = (0,0,1,1) 
 BLACK = (0,0,0,1)
 
+# Matches the vectors with color
+VECTOR_DICTIONARIES = [{"vector": "firstVec", "color": RED}, 
+                       {"vector": "secondVec", "color": BLACK}, 
+                       {"vector": "thirdVec", "color": BLUE}]
+
 for x in range(0, length):
-
+    
+    # get enry of the json
     entry = data[x]
+    
+    # get the entry's orientationMatrix
     matrix = entry.get("orientMat")
-    firstVector = matrix.get("firstVec")
     
-    temp = [x,0,0,0,0,0]
+    # loop over dictionary to display all three vector of the orientation matrix
+    for dic in VECTOR_DICTIONARIES:
         
-    temp[3] = firstVector[0]
-    temp[4] = firstVector[1]
-    temp[5] = firstVector[2]
-    
-    aColors.append(RED)
-    soa.append(temp)
-    
-    secondVector = matrix.get("secondVec")
-    
-    temp = [x,0,0,0,0,0]
-    
-    temp[3] = secondVector[0]
-    temp[4] = secondVector[1]
-    temp[5] = secondVector[2]
+        # temp represents a vector
+        temp_vector = [x,0,0,0,0,0]
+        
+        # get the vector of the matrix (according to current dictionary entry) 
+        vector = matrix.get(dic.get("vector"))
+        
+        # write vector x, y, z to u, v, w of temp_vector
+        temp_vector[3] = vector[0]
+        temp_vector[4] = vector[1]
+        temp_vector[5] = vector[2]
+        
+        # set the according color of the vector (from VECTOR_DICTIONARY)
+        aColors.append(dic.get("color"))
+        soa.append(temp_vector)
 
-    aColors.append(BLUE)    
-    soa.append(temp)
-    
-    thirdVector = matrix.get("thirdVec")
-    
-    temp = [x,0,0,0,0,0]
-    
-    temp[3] = thirdVector[0]
-    temp[4] = thirdVector[1]
-    temp[5] = thirdVector[2]
-    
-    aColors.append(BLACK)
-    soa.append(temp)
-    
-
+# insert generated array     
 X, Y, Z, U, V, W= zip(*soa)
+
+
+##### Matplotlib settings #####
+
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
@@ -71,17 +70,11 @@ ax.set_xlim([0, scale])
 ax.set_ylim([0, scale])
 ax.set_zlim([0, scale])
 
-# ------------
-# Vectors
+# Write the vectors into the Plot
 ax.quiver(X, Y, Z, U, V, W, colors=aColors)
-# ------------
+
+##### Matplotlib settings #####
 
 
-# ------------
-# Points
-#ax.scatter(points_x, points_y, points_z, c='r', marker='o')
-# ------------
-
-print(path)
-
+# Display the plot
 plt.show()
