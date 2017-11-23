@@ -75,6 +75,7 @@ public class Test{
         	  
         	  try (PrintWriter out = new PrintWriter("../Sensordaten/konvertiert/" + NAME)){
         		  out.write(outJson);  
+        		  System.out.println("Write to file complete");
         	  }
         	  
         	  
