@@ -12,3 +12,5 @@ visual_ext_index.html
 /webapp/visual_ext_index.html
 **.DS_Store
 Sensordaten/konvertiert/
+*.aux
+Studienarbeit/*.log
