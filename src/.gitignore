@@ -57,3 +57,4 @@ local.properties
 /Quternion.class
 /Euclid.class
 /RotationMatrix.class
+/QuaternionUtilsTests.class

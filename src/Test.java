@@ -15,14 +15,45 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class Test{
-	public static String NAME = "ruhig_liegend_schmall_unten.json";
+	public static String NAME = "gerade.json";
 	
-    public static void main(String[] args) throws Exception{
-    	if (args.length == 1){
-    		NAME = args[0];
-    	}
-    	
-        ComplementaryFilter filter = new ComplementaryFilter();
+	public static void convertSensorQuternionsToRotationMatrix () throws Exception {
+		 List<DataObject> list = new LinkedList<>();
+		 JsonValue json = Json.parse(new FileReader(new File( "../Sensordaten/q_" +  NAME)));
+		 DataObject data;
+		 double[] orientMat;
+		 double[] orientQuternions;
+		 
+		 if (json.isArray()) {
+			  JsonArray array = json.asArray();
+			  for (JsonValue wert : array) {
+				  data = new DataObject();
+				  
+				  orientQuternions = new double[4];
+				  orientQuternions[0] = wert.asObject().getDouble("q0", 0);
+				  orientQuternions[1] = wert.asObject().getDouble("q1", 0);
+				  orientQuternions[2] = wert.asObject().getDouble("q2", 0);
+				  orientQuternions[3] = wert.asObject().getDouble("q3", 0);
+				  
+				  orientMat = QuternionUtils.toRotationMatrix(orientQuternions);
+				  data.orientMat.setData(orientMat);
+				  list.add(data);
+			  }
+		 }
+		 
+		 Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		 String outJson = gson.toJson(list);
+		 
+		 String fileName = "Sensordaten/konvertiert/sensorCalculated/" + NAME;
+   	  
+		 try (PrintWriter out = new PrintWriter("../" + fileName)){
+			 out.write(outJson);  
+			 System.out.println("Writing Sensor Quternions to " + fileName + " finished!");
+		 }
+	}
+	
+	public static void applyFiltersToRawData () throws Exception {
+		ComplementaryFilter filter = new ComplementaryFilter();
         TrapezIntegrationFilter posFilter = new TrapezIntegrationFilter();
         List<DataObject> list = new LinkedList<>();
         
@@ -58,7 +89,6 @@ public class Test{
 		        double[] pos = posFilter.getPosition();
 		        //double[] posEuclid = QuternionUtils.toEuclidAnglesRadian(pos);
 		        
-		        
 		        //set Data in Objecct
 		        data.ac_x = ac_x;
 		        data.ac_y = ac_y;
@@ -81,14 +111,13 @@ public class Test{
         		  out.write(outJson);  
         		  System.out.println("Write to file complete");
         	  }
-        	  
-        	  
-        	  
-        	  
         }
-        
-       
+	}
+	
+    public static void main(String[] args) throws Exception{
+		if (args.length == 1){
+			NAME = args[0];
+		}
+		convertSensorQuternionsToRotationMatrix();
     }
-
-
 }
