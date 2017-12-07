@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class Test{
-	public static String NAME = "ruhig.json";
+	public static String NAME = "ruhig_8.json";
 	
 	public static void convertSensorQuternionsToRotationMatrix () throws Exception {
 		 List<DataObject> list = new LinkedList<>();

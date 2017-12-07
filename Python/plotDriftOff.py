@@ -13,7 +13,8 @@ import matplotlib.pyplot as plt
 import json
 
 
-PATH = 'gerade'
+PATH = 'ruhig_8'
+#PATH = 'sensorCalculated/ruhig_8'
 
 # load sensordata
 data = json.load(open('../Sensordaten/konvertiert/' + PATH + '.json'))
@@ -31,7 +32,7 @@ initialThirdVector = initialMatrix.get("thirdVec")
 
 axis = [0]
 
-for x in range(1, 50):
+for x in range(1, length):
     
     axis.append(x)
     
