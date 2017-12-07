@@ -5,7 +5,7 @@ import numpy as np
 
 import json
 
-PATH = 'sensorCalculated/gerade'
+PATH = 'sensorCalculated/ruhig'
 
 # load sensordata
 data = json.load(open('../Sensordaten/konvertiert/' + PATH + '.json'))
@@ -13,7 +13,7 @@ data = json.load(open('../Sensordaten/konvertiert/' + PATH + '.json'))
 soa = []
 
 # Highest shown value of axis x,y,z
-scale = 5
+scale = 9
 
 # Number of orientation matrixs
 length = len(data)

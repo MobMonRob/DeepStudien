@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class Test{
-	public static String NAME = "gerade.json";
+	public static String NAME = "ruhig.json";
 	
 	public static void convertSensorQuternionsToRotationMatrix () throws Exception {
 		 List<DataObject> list = new LinkedList<>();
@@ -30,10 +30,10 @@ public class Test{
 				  data = new DataObject();
 				  
 				  orientQuternions = new double[4];
-				  orientQuternions[0] = wert.asObject().getDouble("q0", 0);
-				  orientQuternions[1] = wert.asObject().getDouble("q1", 0);
-				  orientQuternions[2] = wert.asObject().getDouble("q2", 0);
-				  orientQuternions[3] = wert.asObject().getDouble("q3", 0);
+				  orientQuternions[0] = wert.asObject().getDouble("q3", 0);
+				  orientQuternions[1] = wert.asObject().getDouble("q0", 0);
+				  orientQuternions[2] = wert.asObject().getDouble("q1", 0);
+				  orientQuternions[3] = wert.asObject().getDouble("q2", 0);
 				  
 				  orientMat = QuternionUtils.toRotationMatrix(orientQuternions);
 				  data.orientMat.setData(orientMat);
@@ -118,6 +118,7 @@ public class Test{
 		if (args.length == 1){
 			NAME = args[0];
 		}
-		convertSensorQuternionsToRotationMatrix();
+		//convertSensorQuternionsToRotationMatrix();
+		applyFiltersToRawData();
     }
 }
