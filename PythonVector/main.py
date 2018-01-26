@@ -26,17 +26,14 @@ BLUE = (0,0,1,1)
 BLACK = (0,0,0,1)
 
 # Matches the vectors with color
-VECTOR_DICTIONARIES = [{"vector": "firstVec", "color": RED}, 
-                       {"vector": "secondVec", "color": BLACK}, 
-                       {"vector": "thirdVec", "color": BLUE}]
+VECTOR_DICTIONARIES = [{"vector": "orient_x", "color": RED}, 
+                       {"vector": "orient_y", "color": BLACK}, 
+                       {"vector": "orient_z", "color": BLUE}]
 
-for x in range(0, length):
+for x in range(0, 1):
     
     # get enry of the json
     entry = data[x]
-    
-    # get the entry's orientationMatrix
-    matrix = entry.get("orientMat")
     
     # loop over dictionary to display all three vector of the orientation matrix
     for dic in VECTOR_DICTIONARIES:
@@ -45,10 +42,9 @@ for x in range(0, length):
         temp_vector = [x,0,0,0,0,0]
         
         # get the vector of the matrix (according to current dictionary entry) 
-        vector = matrix.get(dic.get("vector"))
-        
-        # write vector x, y, z to u, v, w of temp_vector
-        temp_vector[3] = vector[0]
+        vector = entry.get(dic.get("vector"))
+
+        temp_vector[3] = vector
         temp_vector[4] = vector[1]
         temp_vector[5] = vector[2]
         

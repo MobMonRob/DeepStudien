@@ -21,9 +21,9 @@ class Converter:
                     'mag_x': split[13],
                     'mag_y': split[14],
                     'mag_z': split[15],
-                    'orient_x': split[16],
-                    'orient_y': split[17],
-                    'orient_z': split[18],
+                    'orient_x': float(split[16]),
+                    'orient_y': float(split[17]),
+                    'orient_z': float(split[18]),
                     'time': split[31]
                 }
                 list.append(item)
