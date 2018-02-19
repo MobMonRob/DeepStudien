@@ -1,5 +1,5 @@
 /**
- *
+ * @author Oliver Rettig
  */
 public class IMUUtils {
 
@@ -13,7 +13,7 @@ public class IMUUtils {
       c[1][1] = d;
       c[2][2] = d;
       
-      
+      //double[][] s = MatrixUtils
       double[] result = new double[4];
       
       //TODO
