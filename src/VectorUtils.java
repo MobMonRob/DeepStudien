@@ -69,4 +69,10 @@ public class VectorUtils {
         result[2][2] = u[2]*v[2];
         return result;
     }
+    
+    public static double[] transform(double[][] t, double[] v){
+        if (t.length != v.length || t.length != t[0].length) throw new IllegalArgumentException("t.length must be t[0].length and must be v.length");
+        //TODO
+        
+    }
 }
