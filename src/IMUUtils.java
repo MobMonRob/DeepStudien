@@ -5,6 +5,9 @@ public class IMUUtils {
 
   public final double g = 9.81;
   
+  /**
+   * Implementation follows the formulae from [Brzostowski2014].
+   */
   public static double[] cancelGravity(double[] a, double[] o){
       double d = o[3]*o[3]-(o[0]*o[0]+o[1]*o[1]+o[2]*o[2]);
       
