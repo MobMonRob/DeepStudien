@@ -14,3 +14,4 @@ visual_ext_index.html
 Sensordaten/konvertiert/
 *.aux
 Studienarbeit/*.log
+/nbproject/private/

@@ -3,30 +3,40 @@
  */
 public class IMUUtils {
 
-  public final double g = 9.81;
+    /**
+     *
+     */
+    public static final double g = 9.81;
   
   /**
+   * Cancel gravity by transforming the given acceleration vector form sensor coordinates into
+   * global coordinates and then subtrac the gravity.
+   * 
    * Implementation follows the formulae from [Brzostowski2014].
+   * 
+   * @param a acceeleration in the sensors coordinates including gravity.
+   * @param o quaternion describing the sensors coordinate system in global coordinates.
+   * @return acceleration in global coordinates without gravity.
    */
   public static double[] cancelGravity(double[] a, double[] o){
       double d = o[3]*o[3]-(o[0]*o[0]+o[1]*o[1]+o[2]*o[2]);
       
-      double[][] c = new double[3][3];
-      c[0][0] = d;
-      c[1][1] = d;
-      c[2][2] = d;
+      double[][] t = new double[3][3];
+      // 1. Summand
+      t[0][0] = d;
+      t[1][1] = d;
+      t[2][2] = d;
       
-      MatrixUtils.add(c,VectorUtils(new double[]{2*o[0], 2*o[1], 2*o[3]},new double[]{o[0],o[1],o[2]});
+      // 2. Summand
+      MatrixUtils.add(t,VectorUtils.outerProduct(new double[]{2*o[0], 2*o[1], 2*o[3]}, new double[]{o[0],o[1],o[2]}));
          
-      double[][] e = new double[3][3];
-      e[0][1] = 
-                      
-      MatrixUtils.add(c,e);
-                      
-      double[] result = new double[4];
+      // 3. Summand
+      double[][] e = MatrixUtils.skew(new double[]{o[0],o[1],o[2]});
+      MatrixUtils.scale(e, 2*o[3]);
+      MatrixUtils.add(t,e);
       
-      //TODO
-      
+      double[] result =  VectorUtils.transform(t, a);
+      result[2] -= g;
       return result;
   }
 }

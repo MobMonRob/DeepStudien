@@ -54,7 +54,7 @@ public class VectorUtils {
         return p;
      }
     
-    public static double[] outerProduct(double[] u, double[] v){
+    public static double[][] outerProduct(double[] u, double[] v){
         if (u.length != 3) throw new IllegalArgumentException("u.length must be 3 but it is "+u.length);
         if (v.length != 3) throw new IllegalArgumentException("v.length must be 3 but it is "+v.length);
         double[][] result = new double[3][3];
@@ -70,9 +70,22 @@ public class VectorUtils {
         return result;
     }
     
+    /**
+     * Transform the given vector v by the given matrix t.
+     * 
+     * @param t
+     * @param v
+     * @return v
+     */
     public static double[] transform(double[][] t, double[] v){
-        if (t.length != v.length || t.length != t[0].length) throw new IllegalArgumentException("t.length must be t[0].length and must be v.length");
+        if (t.length != v.length || t.length != t[0].length) 
+            throw new IllegalArgumentException("t.length must be t[0].length and must be v.length");
         //TODO
-        
+        for (int row=0;row<t.length;row++){
+            for (int col=0;col<t.length;col++){
+            
+            }
+        }
+        return v;
     }
 }
