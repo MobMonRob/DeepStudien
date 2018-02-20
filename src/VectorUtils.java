@@ -1,5 +1,6 @@
 /**
- *
+ * Utilities to work with vectors.
+ * 
  * @author Oliver Rettig
  */
 public class VectorUtils {
@@ -75,17 +76,19 @@ public class VectorUtils {
      * 
      * @param t
      * @param v
-     * @return v
+     * @return transformed vector v (the given vector v is not overwritten...).
+     * @throws IllegalArgumentException if the given matrix is not quatratic or its
+     * dimensions is not identical with the dimension of the given vector v.
      */
     public static double[] transform(double[][] t, double[] v){
         if (t.length != v.length || t.length != t[0].length) 
-            throw new IllegalArgumentException("t.length must be t[0].length and must be v.length");
-        //TODO
+            throw new IllegalArgumentException("t.length must be t[0].length and must be v.length!");
+        double[] result = new double[t.length];
         for (int row=0;row<t.length;row++){
             for (int col=0;col<t.length;col++){
-            
+                result[row] += t[row][col] * v[col];
             }
         }
-        return v;
+        return result;
     }
 }

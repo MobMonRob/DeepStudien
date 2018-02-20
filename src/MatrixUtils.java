@@ -1,5 +1,6 @@
 /**
- *
+ * Utilities to work with matrices.
+ * 
  * @author Oliver Rettig
  */
 public class MatrixUtils {
@@ -23,6 +24,13 @@ public class MatrixUtils {
          return a;
      }
      
+     /**
+      * Scale the given matrix by the given double value.
+      * 
+      * @param m
+      * @param scale
+      * @return scale * m
+      */
      public static double[][] scale(double[][] m, double scale){
          for (int row=0;row<m.length;row++){
            for (int col=0;col<m.length;col++){

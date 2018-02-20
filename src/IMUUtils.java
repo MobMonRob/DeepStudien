@@ -1,11 +1,10 @@
 /**
+ * Utilities to work with inertial sensors.
+ * 
  * @author Oliver Rettig
  */
 public class IMUUtils {
 
-    /**
-     *
-     */
     public static final double g = 9.81;
   
   /**
