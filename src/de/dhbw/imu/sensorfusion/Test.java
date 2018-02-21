@@ -1,15 +1,13 @@
+package de.dhbw.imu.sensorfusion;
+
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonArray;
-import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -1,3 +1,5 @@
+package de.dhbw.imu.sensorfusion;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;

@@ -1,3 +1,5 @@
+package de.dhbw.imu.sensorfusion;
+
 /**
  * Utilities to work with matrices.
  * 

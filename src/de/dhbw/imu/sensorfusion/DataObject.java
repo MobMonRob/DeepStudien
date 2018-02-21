@@ -1,3 +1,5 @@
+package de.dhbw.imu.sensorfusion;
+
 
 public class DataObject {
 	double ac_x = 0;

@@ -1,3 +1,5 @@
+package de.dhbw.imu.sensorfusion;
+
 
 public class Quaternion {
 	double w = 0;
