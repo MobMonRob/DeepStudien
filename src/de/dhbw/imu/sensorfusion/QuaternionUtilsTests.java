@@ -1,17 +1,17 @@
 package de.dhbw.imu.sensorfusion;
 
 import de.dhbw.math.QuaternionUtils;
-//import static org.junit.Assert.*;
+import static org.junit.Assert.*;
 
-//import org.junit.Test;
+import org.junit.Test;
 
 public class QuaternionUtilsTests {
 
-	//@Test
+	@Test
 	public void normalize() {
 		double[] q = new double[] {1, 0, 1, 0};
 		QuaternionUtils.normalizeQuaternion(q);
-		//assertArrayEquals(new double[] {0.7071, 0, 0.7071, 0}, q, 10e-4);
+		assertArrayEquals(new double[] {0.7071, 0, 0.7071, 0}, q, 10e-4);
 	}
 
 }
