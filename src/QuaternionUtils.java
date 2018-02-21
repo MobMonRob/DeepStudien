@@ -2,7 +2,7 @@
 /**
  * @author Oliver Rettig
  */
-public class QuternionUtils {
+public class QuaternionUtils {
     
     public static void normalizeVector(double[] x){
       if (x.length != 3) throw new IllegalArgumentException("x.length must be 3 but it is "+x.length);
@@ -132,7 +132,7 @@ public class QuternionUtils {
      *  @return euclid angle in degree unit
      *  @throws Exception in case of singularity*/
     public static double[] toEuclidAnglesDegree(double[] q) throws Exception {
-    	double[] e = QuternionUtils.toEuclidAnglesRadian(q);
+    	double[] e = QuaternionUtils.toEuclidAnglesRadian(q);
     	double[] degree = {Math.toDegrees(e[0]), Math.toDegrees(e[1]), Math.toDegrees(e[2])};
     	return degree;
     }

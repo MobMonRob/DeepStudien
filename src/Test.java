@@ -15,9 +15,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class Test{
-	public static String NAME = "ruhig_8.json";
+    public static String NAME = "ruhig_8.json";
 	
-	public static void convertSensorQuternionsToRotationMatrix () throws Exception {
+    public static void convertSensorQuternionsToRotationMatrix () throws Exception {
 		 List<DataObject> list = new LinkedList<>();
 		 JsonValue json = Json.parse(new FileReader(new File( "../Sensordaten/q_" +  NAME)));
 		 DataObject data;
@@ -35,7 +35,7 @@ public class Test{
 				  orientQuternions[2] = wert.asObject().getDouble("q1", 0);
 				  orientQuternions[3] = wert.asObject().getDouble("q2", 0);
 				  
-				  orientMat = QuternionUtils.toRotationMatrix(orientQuternions);
+				  orientMat = QuaternionUtils.toRotationMatrix(orientQuternions);
 				  data.orientMat.setData(orientMat);
 				  list.add(data);
 			  }
@@ -50,9 +50,9 @@ public class Test{
 			 out.write(outJson);  
 			 System.out.println("Writing Sensor Quternions to " + fileName + " finished!");
 		 }
-	}
+    }
 	
-	public static void applyFiltersToRawData () throws Exception {
+    public static void applyFiltersToRawData () throws Exception {
 		ComplementaryFilter filter = new ComplementaryFilter();
         TrapezIntegrationFilter posFilter = new TrapezIntegrationFilter();
         List<DataObject> list = new LinkedList<>();
@@ -82,7 +82,7 @@ public class Test{
 		        //Orientation
 		        filter.update(a, w, 0.020d);
 		        double[] orient = filter.getOrientation();
-		        double[] orientMat = QuternionUtils.toRotationMatrix(orient);
+		        double[] orientMat = QuaternionUtils.toRotationMatrix(orient);
 		        
 		        //Position
 		        posFilter.update(orient, a, 0.020d);
@@ -112,7 +112,7 @@ public class Test{
         		  System.out.println("Write to file complete");
         	  }
         }
-	}
+    }
 	
     public static void main(String[] args) throws Exception{
 		if (args.length == 1){

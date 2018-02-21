@@ -167,7 +167,7 @@ public class ComplementaryFilter {
      */
     public void setOrientation(final double[] q){
         // Set the state to inverse (state is fixed wrt body).
-        q_ = QuternionUtils.invertQuaternion(q);
+        q_ = QuaternionUtils.invertQuaternion(q);
     }
 
     public double getAngularVelocityBiasX(){
@@ -216,11 +216,11 @@ public class ComplementaryFilter {
         gain = gain_acc_;
       }
 
-      QuternionUtils.scaleQuaternion(gain, dq_acc);
+      QuaternionUtils.scaleQuaternion(gain, dq_acc);
 
-      q_ = QuternionUtils.quaternionMultiplication(q_pred, dq_acc);
+      q_ = QuaternionUtils.quaternionMultiplication(q_pred, dq_acc);
 
-      QuternionUtils.normalizeQuaternion(q_);
+      QuaternionUtils.normalizeQuaternion(q_);
     }
 
     /**
@@ -256,20 +256,20 @@ public class ComplementaryFilter {
       if (do_adaptive_gain_){
          alpha = getAdaptiveGain(gain_acc_, a);
       }
-      QuternionUtils.scaleQuaternion(alpha, dq_acc);
+      QuaternionUtils.scaleQuaternion(alpha, dq_acc);
 
-      double[] q_temp = QuternionUtils.quaternionMultiplication(q_pred, dq_acc);
+      double[] q_temp = QuaternionUtils.quaternionMultiplication(q_pred, dq_acc);
 
       // Correction (from mag):
       // q_ = q_temp * [(1-gain) * qI + gain * dq_mag]
       // where qI = identity quaternion
       double[] dq_mag = getMagCorrection(m, q_temp);
 
-      QuternionUtils.scaleQuaternion(gain_mag_, dq_mag);
+      QuaternionUtils.scaleQuaternion(gain_mag_, dq_mag);
 
-      q_ = QuternionUtils.quaternionMultiplication(q_temp, dq_mag);
+      q_ = QuaternionUtils.quaternionMultiplication(q_temp, dq_mag);
 
-      QuternionUtils.normalizeQuaternion(q_);
+      QuaternionUtils.normalizeQuaternion(q_);
     }
 
     private boolean checkState(final double[] a, final double[] w){
@@ -312,7 +312,7 @@ public class ComplementaryFilter {
                q_[2] + 0.5*dt*( w_unb[0]*q_[3] - w_unb[1]*q_[0] - w_unb[2]*q_[1]),
                q_[3] + 0.5*dt*(-w_unb[0]*q_[2] + w_unb[1]*q_[1] - w_unb[2]*q_[0])};
 
-      QuternionUtils.normalizeQuaternion(q_pred);
+      QuaternionUtils.normalizeQuaternion(q_pred);
       return q_pred;
     }
 
@@ -324,7 +324,7 @@ public class ComplementaryFilter {
       double[] q_acc = new double[4];
 
       // Normalize acceleration vector.
-      QuternionUtils.normalizeVector(a);
+      QuaternionUtils.normalizeVector(a);
       if (a[2] >=0){
           q_acc[0] =  Math.sqrt((a[2] + 1) * 0.5);	
           q_acc[1] = -a[1]/(2.0 * q_acc[0]);
@@ -356,7 +356,7 @@ public class ComplementaryFilter {
       // The quaternion multiplication between q_acc and q_mag represents the 
       // quaternion, orientation of the Global frame wrt the local frame.  
       // q = q_acc times q_mag 
-      double[] q_meas = QuternionUtils.quaternionMultiplication(q_acc, new double[]{q0_mag, 0, 0, q3_mag}); 
+      double[] q_meas = QuaternionUtils.quaternionMultiplication(q_acc, new double[]{q0_mag, 0, 0, q3_mag}); 
       return q_meas;
     }
 
@@ -373,7 +373,7 @@ public class ComplementaryFilter {
     private double[] getMeasurement(final double[] a){
 
       // Normalize acceleration vector.
-      QuternionUtils.normalizeVector(a);
+      QuaternionUtils.normalizeVector(a);
 
       double[] q = new double[4];
 
@@ -394,11 +394,11 @@ public class ComplementaryFilter {
 
     private double[] getAccCorrection(final double[] a, final double[] p){
       // Normalize acceleration vector.
-      QuternionUtils.normalizeVector(a);
+      QuaternionUtils.normalizeVector(a);
 
       // Acceleration reading rotated into the world frame by the inverse predicted
       // quaternion (predicted gravity):
-      double[] g = QuternionUtils.rotateVectorByQuaternion(a, new double[]{p[0],-p[1],-p[2],-p[3]});
+      double[] g = QuaternionUtils.rotateVectorByQuaternion(a, new double[]{p[0],-p[1],-p[2],-p[3]});
 
       // Delta quaternion that rotates the predicted gravity into the real gravity:
       double dq0 = Math.sqrt((g[2] + 1) * 0.5);
@@ -419,7 +419,7 @@ public class ComplementaryFilter {
 
       // Magnetic reading rotated into the world frame by the inverse predicted
       // quaternion:
-      double[] l = QuternionUtils.rotateVectorByQuaternion(m, new double[]{
+      double[] l = QuaternionUtils.rotateVectorByQuaternion(m, new double[]{
                                p[0], -p[1], -p[2], -p[3]});
 
       // Delta quaternion that rotates the l so that it lies in the xz-plane 
@@ -436,7 +436,7 @@ public class ComplementaryFilter {
      * @return orientation as quaternion, the inverse of the state (state is fixed wrt body).
      */
     public double[] getOrientation(){
-        return QuternionUtils.invertQuaternion(q_);
+        return QuaternionUtils.invertQuaternion(q_);
     }
 
     private double getAdaptiveGain(double alpha, final double[] a){

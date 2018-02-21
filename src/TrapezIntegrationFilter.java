@@ -37,12 +37,12 @@ public class TrapezIntegrationFilter {
         // Transforming the acceleration from sensor frame to navigation frame.
         
         if (o != null){
-            o = QuternionUtils.mean(o, o_new);
+            o = QuaternionUtils.mean(o, o_new);
         } else {
             o = new double[]{o_new[0], o_new[1], o_new[2], o_new[3]};
         }
         
-        a = QuternionUtils.rotateVectorByQuaternion(a_sensor, o);
+        a = QuaternionUtils.rotateVectorByQuaternion(a_sensor, o);
         
         // Velocity and position estimation using trapeze integration.
         
