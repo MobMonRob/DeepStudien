@@ -1,5 +1,8 @@
 package de.dhbw.imu.sensorfusion;
 
+import de.dhbw.math.MatrixUtils;
+import de.dhbw.math.VectorUtils;
+
 /**
  * Utilities to work with inertial sensors.
  * 

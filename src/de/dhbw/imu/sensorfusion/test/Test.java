@@ -1,5 +1,8 @@
-package de.dhbw.imu.sensorfusion;
+package de.dhbw.imu.sensorfusion.test;
 
+import de.dhbw.imu.sensorfusion.filter.ComplementaryFilter;
+import de.dhbw.imu.sensorfusion.filter.TrapezIntegrationFilter;
+import de.dhbw.math.QuaternionUtils;
 import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;

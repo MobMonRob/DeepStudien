@@ -15,3 +15,5 @@ Sensordaten/konvertiert/
 *.aux
 Studienarbeit/*.log
 /nbproject/private/
+/build/
+/dist/

@@ -1,4 +1,7 @@
-package de.dhbw.imu.sensorfusion;
+package de.dhbw.imu.sensorfusion.filter;
+
+import de.dhbw.math.QuaternionUtils;
+import de.dhbw.math.VectorUtils;
 
 /**
  *
@@ -30,8 +33,12 @@ public class TrapezIntegrationFilter {
      * @param a_sensor acceleration in sensor frame
      * @param dt 
      * @throws IllegalArgumentException,  if Initial velocity or position is not set before first invocation.
+     * 
+     * TODO
+     * ärgerlich dass das jetzt public ist, vielleicht brauche ich ein Interface in dem das
+     * drin ist ...
      */
-    void update(final double o_new[], final double[] a_sensor, final double dt){
+    public void update(final double o_new[], final double[] a_sensor, final double dt){
         
         if (v_prev == null) throw new IllegalArgumentException("update() invoked, before initial v has been set!");
         if (p_prev == null) throw new IllegalArgumentException("update() invoked, before initial p has ben set!");

@@ -1,4 +1,4 @@
-package de.dhbw.imu.sensorfusion;
+package de.dhbw.math;
 
 /**
  * Utilities to work with vectors.

@@ -1,4 +1,4 @@
-package de.dhbw.imu.sensorfusion;
+package de.dhbw.imu.sensorfusion.test;
 
 
 public class RotationMatrix {

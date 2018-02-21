@@ -1,4 +1,6 @@
-package de.dhbw.imu.sensorfusion;
+package de.dhbw.imu.sensorfusion.filter;
+
+import de.dhbw.math.QuaternionUtils;
 
 /**
  * Complementary Filter.
@@ -190,8 +192,12 @@ public class ComplementaryFilter {
      * @param a Normalized gravity vector.
      * @param w  Angular veloctiy, in rad/s.
      * @param dt time delta, in seconds.
+     * 
+     * TODO
+     * ärgerlich dass das jetzt public ist wegen der test-class, vielleicht braucht 
+     * es ein eigenes Interface in dem die method drin ist
      */
-    void update(final double[] a, final double w[], double dt){
+    public void update(final double[] a, final double w[], double dt){
       if (!initialized_){
         // First time - ignore prediction:
         q_ = getMeasurement(a);
