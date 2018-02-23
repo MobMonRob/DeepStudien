@@ -27,7 +27,7 @@ public class TrapezIntegrationFilter {
     // C = C_prev*(2*eye(3)+(ang_rate_matrix*dt))/(2*eye(3)-(ang_rate_matrix*dt));
     
     /**
-     * Update acceleration, velocity and position in navigation frame.
+     * Update acceleration, velocity and position in the global frame.
      * 
      * @param o_new orientation
      * @param a_sensor acceleration in sensor frame
@@ -53,7 +53,7 @@ public class TrapezIntegrationFilter {
         
         a = QuaternionUtils.rotateVectorByQuaternion(a_sensor, o);
         
-        // Velocity and position estimation using trapeze integration.
+        // Velocity and position estimation using trapez integration.
         
         if (a_prev == null){
             v = VectorUtils.createAdd(v_prev,VectorUtils.createScale(VectorUtils.createSub(a,new double[]{0,0,ComplementaryFilter.kGravity}), dt));
