@@ -1,0 +1,36 @@
+\section{Vorverarbeitung vor der Analyse}
+Um die Anzahl der zu analysierenden Dimensionen zu reduzieren, können aus den rohen Sensordaten Informationen wie Rotation oder Beschleunigung berechnet werden. Dies hat den Vorteil, dass die Konstruktion eines Analyse-Systems anhand dieser Informationen gegebenenfalls besser funktioniert, da die Daten vorab visuell durch den Menschen analysiert werden können. Die Vorverarbeitung bringt jedoch auch Nachteile mit sich:
+
+\begin{itemize} 
+\item Die Vorverarbeitung nimmt zusätzliche Zeit während der Vorverarbeitung in Anspruch. Statt die Daten direkt zum Analyse-System zu übertragen, müssen gegebenenfalls komplexe Berechnungen durchgeführt werden 
+\item Etwaige Ausschläge des Sensors in eine oder mehrere Richtungen beeinflussen das Ergebnis gegebenenfalls stark
+\end{itemize}
+
+Folgt man diesem Ansatz werden die folgenden Dimensionen analysiert.
+\begin{itemize} 
+\item Position (x)
+\item Position (y)
+\item Position (z)
+\item Rotation (x)
+\item Rotation (y)
+\item Rotation (z)
+\end{itemize}
+
+\section{Erkennung auf Basis von Rohdaten}
+Die Sensordaten können jedoch auch ohne Vorverarbeitung analysiert werden. Dies verkürzt den gesamten Prozess von der Extraktion bis zur Analyse, da die Daten nach der Extraktion direkt an das Analyse-System übertragen werden können.
+
+\begin{itemize} 
+\item Je nach Qualität des Sensors enthalten die extrahierten Sensordaten einzelne Ausschläge. Diese könnten als Anomalien identifiziert werden, was das Ergebnis der Analyse verfälscht
+\end{itemize}
+Die, im Kapitel X aufgeführten Sensoren Gyroskop, Magnetometer und Accelerometer liefern die folgenden Dimensionen zur Analyse:
+\begin{itemize} 
+\item Rotationsgeschwindigkeit (x-Richtung)
+\item Rotationsgeschwindigkeit (y-Richtung)
+\item Rotationsgeschwindigkeit (z-Richtung)
+\item Lineare Beschleunigung (x-Richtung)
+\item Lineare Beschleunigung (y-Richtung)
+\item Lineare Beschleunigung (z-Richtung)
+\item Magentische Flussdichte (x-Richtung)
+\item Magentische Flussdichte (y-Richtung)
+\item Magentische Flussdichte (z-Richtung)
+\end{itemize}

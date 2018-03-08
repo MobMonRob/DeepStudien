@@ -1,0 +1,23 @@
+\section{Geplantes Vorgehen}
+Im ersten Schritt sollen die verfügbaren Sensoren identifiziert und ein Verfahren zur unkomplizierten Extraktion der Daten, die jene liefern, entwickelt werden. Da diese Sensordaten die Basis für den Entwurf, die Implementierung und die Bewertung der Ansätze zur Anomalie-Erkennung bilden, lohnt sich die Investition in die Planung und Entwicklung eines geeigneten Verfahren zur Extraktion. Teil der Extraktion soll dabei - falls notwendig - auch die Konvertierung in das Format JSON sein, da sich diese innerhalb von Java und Python übersichtlicher und mit weniger Aufwand verarbeiten lassen. \newline
+Steht eine extrahierte und konvertierte Datenbasis zur Verfügung folgt der Entwurf und anschließende Bewertung möglicher Ansätze. Wurden ein oder gegebenenfalls mehrere Ansätze identifiziert, folgt die Entscheidung für einer Technologie und der Entwurf für die Umsetzung. Im letzten Schritt wird eine Lösung auf Basis des Entwurfs entwickelt und mit existierenden Ansätzen verglichen.
+
+\begin{algorithm}
+\caption{Ablauf Konvertierung}\label{euclid}
+\begin{algorithmic}[1]
+\State $\textit{input} \gets \text{lese }\textit{input }\text{file}$
+\State $\textit{output} \gets \text{erstelle } \textit{output } \text{file}$
+\If {$i > \textit{stringlen}$} \Return false
+\EndIf
+\State $j \gets \textit{patlen}$
+\BState \emph{loop}:
+\If {$\textit{string}(i) = \textit{path}(j)$}
+\State $j \gets j-1$.
+\State $i \gets i-1$.
+\State \textbf{goto} \emph{loop}.
+\State \textbf{close};
+\EndIf
+\State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
+\State \textbf{goto} \emph{top}.
+\end{algorithmic}
+\end{algorithm}
