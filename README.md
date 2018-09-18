@@ -1,2 +1,2 @@
 # DeepStudien
-Studienarbeit Deeplearning und Anomaliedetektion mobile Roboter
+Studienarbeit Deeplearning und Anomaliedetektion mobile Roboter.
